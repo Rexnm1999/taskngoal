@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply text-gray-900 antialiased bg-white;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply px-4 py-2 rounded-md font-medium transition-all duration-200;
+  }
+  
+  .btn-primary {
+    @apply bg-black text-white hover:bg-gray-800;
+  }
+  
+  .btn-secondary {
+    @apply bg-gray-100 text-gray-900 hover:bg-gray-200;
+  }
+
+  .input-field {
+    @apply w-full p-2 border border-gray-200 rounded-md focus:ring-1 focus:ring-gray-900 focus:border-gray-900 outline-none transition-all duration-200;
+  }
+
+  .card {
+    @apply bg-white border border-gray-100 rounded-lg p-6 shadow-sm;
+  }
+}
+
+.react-datepicker-wrapper {
+  @apply w-full;
+}
+
+.react-calendar {
+  @apply w-full border-0 shadow-none font-sans;
+  background: transparent !important;
+}
+
+.react-calendar__tile {
+  @apply p-4 h-20 flex flex-col items-center justify-start;
+}
+
+.react-calendar__tile--now {
+  @apply bg-gray-50;
+}
+
+.react-calendar__tile--active {
+  @apply bg-gray-100 text-black;
+}
+
+.react-calendar__tile:enabled:hover,
+.react-calendar__tile:enabled:focus {
+  @apply bg-gray-200 text-black;
+}
+
+.progress-circle {
+  @apply transition-all duration-500;
+}

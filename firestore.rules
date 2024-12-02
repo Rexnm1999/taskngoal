@@ -1,0 +1,42 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Helper functions
+    function isSignedIn() {
+      return request.auth != null;
+    }
+    
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+    
+    function isValidSalesAmount(amount) {
+      return amount is number && amount >= 0;
+    }
+    
+    function isValidDate(date) {
+      return date is timestamp || date == null;
+    }
+
+    // User document rules
+    match /users/{userId} {
+      allow create, read, write: if request.auth != null && request.auth.uid == userId;
+      
+      // Tasks subcollection
+      match /tasks/{taskId} {
+        allow read, write: if request.auth != null && request.auth.uid == userId;
+      }
+      
+      // Sales subcollection
+      match /sales/{saleId} {
+        allow read, write: if request.auth != null && request.auth.uid == userId;
+      }
+      
+      // Sales targets subcollection
+      match /salesTargets/{targetId} {
+        allow read, write: if request.auth != null && request.auth.uid == userId;
+      }
+    }
+  }
+}
